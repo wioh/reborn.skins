@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reborn Skins · for the Innioasis Y2</title>
+<style>
+:root{color-scheme:light;--bg:#f3efe6;--panel:#fbf9f4;--ink:#17171a;--muted:#6b6a66;--line:#ddd7c8;--accent:#2d54f0;--onacc:#fff}
+@media(prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#141416;--panel:#1c1c1f;--ink:#f1efe9;--muted:#9a978f;--line:#2e2e32;--accent:#7b97ff;--onacc:#0c0f1a}}
+*{box-sizing:border-box}
+html,body,dialog,dialog *,.tile,.tile *{-webkit-user-select:none;user-select:none}
+body{-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
+input[type=search]{-webkit-user-select:text!important;user-select:text!important}
+img{-webkit-user-drag:none;user-drag:none}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--accent)}
+.top{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;padding:12px 24px;background:var(--bg);border-bottom:1px solid var(--line)}
+@media(max-width:700px){.top{position:static;padding:12px 14px}}
+.logo{font-weight:800;letter-spacing:-.02em;font-size:1.1rem;text-decoration:none;color:var(--ink);margin-right:8px}
+.logo span{color:var(--accent)}
+input[type=search],select{padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);font:inherit}
+input[type=search]{flex:1 1 200px;min-width:0;max-width:360px}
+input:focus,select:focus,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.f{display:flex;gap:4px;flex-wrap:wrap}
+.f button{padding:6px 12px;border:0;border-radius:8px;background:none;color:var(--muted);font:inherit;font-size:.9rem;cursor:pointer}
+.f button:hover{color:var(--ink)}
+.f button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.f em{font-style:normal;opacity:.55;margin-left:5px}
+select{margin-left:auto}
+.intro{display:flex;justify-content:space-between;max-width:1500px;margin:0 auto;padding:18px 24px 10px;color:var(--muted);font-size:.9rem}
+.intro a{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;max-width:1500px;margin:0 auto;padding:0 24px 30px}
+@media(max-width:700px){.grid,.intro{padding-left:14px;padding-right:14px}}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:box-shadow .15s,transform .15s}
+.tile:hover{box-shadow:0 10px 26px #0003;transform:translateY(-2px)}
+.view{position:relative;aspect-ratio:4/3;overflow:hidden;cursor:pointer;background:#000}
+.slide{width:100%;height:100%}
+.slide img{width:100%;height:100%;object-fit:cover;display:block}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;border:0;background:#000a;color:#fff;font-size:1.1rem;line-height:1;cursor:pointer;display:grid;place-items:center;opacity:0;transition:opacity .15s}
+.view:hover .nav,.nav:focus-visible{opacity:1}
+@media(hover:none){.nav{opacity:1}}
+.nav:hover{background:var(--accent);color:var(--onacc)}
+.nav.p{left:8px}.nav.n{right:8px}
+.dots{position:absolute;bottom:7px;left:0;right:0;display:flex;justify-content:center;gap:5px;pointer-events:none;opacity:0;transition:opacity .15s}
+.view:hover .dots,.view.show .dots{opacity:1}
+.dots i{width:6px;height:6px;border-radius:50%;background:#fff6}
+.dots i.on{background:#fff;box-shadow:0 0 0 1px #0006}
+.info{padding:11px 14px 13px}
+.name{width:100%;border:0;background:none;padding:0;text-align:left;color:inherit;font:inherit;cursor:pointer;min-width:0}
+.name b{line-height:1.25}.name .by{color:var(--muted);font-size:.88rem;margin-left:6px}.name small{display:block;color:var(--muted);font-size:.78rem}
+.mock{height:100%;padding:6% 7%;display:flex;flex-direction:column;font-family:system-ui,sans-serif;container-type:inline-size}
+.mock .b{font-size:5.5cqw;display:flex;justify-content:space-between}
+.mock .c{flex:1;margin:5% auto;aspect-ratio:1;border-radius:6%;max-height:52%}
+.mock .t{font-size:7cqw;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mock .a{font-size:5.5cqw}
+.mock .p{height:3%;min-height:3px;border-radius:9px;margin-top:5%;position:relative}
+.mock .p i{position:absolute;inset:0 62% 0 0;border-radius:9px}
+.mock .li{font-size:6.2cqw;padding:2.2% 4%;border-radius:6px;margin-top:1.6%}
+.mock .ag{flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:5%;margin-top:6%;align-content:start}
+.mock .ag div{aspect-ratio:1;border-radius:6%}
+dialog{margin:auto;width:min(380px,92vw);max-height:90vh;border:1px solid var(--line);border-radius:16px;background:var(--panel);color:var(--ink);padding:16px;overflow:auto;box-shadow:0 20px 60px #0006}
+dialog:focus{outline:none}
+dialog::backdrop{background:#0006}
+dialog .view{border-radius:10px}
+dialog h2{margin:14px 0 0;font-size:1.3rem;letter-spacing:-.02em;line-height:1.25}
+dialog h2 small{font-size:.85rem;font-weight:400;color:var(--muted);margin-left:6px}
+dialog p{margin:6px 0}
+.btn{width:100%;padding:12px;border:0;border-radius:10px;background:var(--accent);color:var(--onacc);font:inherit;font-weight:700;cursor:pointer}
+ol{padding-left:1.2em;color:var(--muted);font-size:.9rem}
+.empty{color:var(--muted);padding:20px 24px;max-width:1500px;margin:0 auto}
+footer{max-width:1500px;margin:0 auto;padding:10px 24px 40px;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="logo" href="#">Reborn<span>.</span>skins</a>
+  <input type="search" id="q" placeholder="Search skins or authors" aria-label="Search skins">
+  <div class="f" id="chips"></div>
+  <select id="sort" aria-label="Sort"><option value="az">Name, A to Z</option><option value="za">Name, Z to A</option><option value="author">Author</option></select>
+</header>
+<div class="intro"><span id="count"></span><span><a id="submit" href="#" target="_blank" rel="noopener">Submit a skin</a></span></div>
+<main><div class="grid" id="grid"></div><p class="empty" id="empty" hidden>No skins match.</p></main>
+<footer>Unzip a skin into the <code>Skins</code> folder on the player, then choose it under Settings → Skin. Want yours listed? Read the <a href="https://github.com/SchulzCode/Y2Reborn/blob/main/docs/skins.md">skin guide</a> and share your folder. Only include fonts and pictures you may share. Not affiliated with Innioasis.</footer>
+
+<dialog id="dlg" tabindex="-1"><div id="detail"></div></dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+// Sample data, used when skins.json can’t be loaded.
+// Add "previews":["img1.png","img2.png"] to a skin to show your own screenshots.
+const FALLBACK=[
+ {id:"ember",name:"Ember",author:"Reborn examples",description:"Warm colours on Reborn’s own layout.",palette:{bg:"#1B1410",text:"#FFF4E6",muted:"#C9B8A6",dim:"#8F7F70",accent:"#FF9F43"}},
+ {id:"midnight",name:"Midnight",author:"Sample",description:"Cool blue on near-black.",palette:{bg:"#07090f",text:"#E8EEFF",muted:"#9FB0D6",dim:"#5B6A8C",accent:"#5AA2FF"}},
+ {id:"paper",name:"Paper",author:"Sample",description:"A light, quiet look for daylight.",palette:{bg:"#F5F1E8",text:"#1E1B16",muted:"#5E574B",dim:"#9A917F",accent:"#B4442B"}},
+ {id:"mint",name:"Mint",author:"Sample",description:"Fresh green accents.",palette:{bg:"#0B1512",text:"#E9FFF6",muted:"#9CC9B8",dim:"#5E8478",accent:"#3DDC97"}}
+];
+// The PUBLIC skins database repo (owner/name) and its branch. This is where skins.json, zips, previews and the submit form live.
+const DB="YOUR-USERNAME/reborn-skins-db",BRANCH="main";
+const BASE=`https://raw.githubusercontent.com/${DB}/${BRANCH}/`;
+const $=s=>document.querySelector(s);
+$("#submit").href=`https://github.com/${DB}/issues/new?template=submit-skin.yml`;
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const lum=h=>{const n=parseInt(h.slice(1),16);return(.2126*(n>>16)+.7152*((n>>8)&255)+.0722*(n&255))/255};
+let skins=[],filter="All",failed=false;const pos={};
+const FILTERS=["All","Dark","Light"];
+const tagsOf=s=>[lum(s.palette.bg)>.5?"Light":"Dark"];
+const imgs=s=>s.previews&&s.previews.length?s.previews:(s.preview?[s.preview]:null);
+const count=s=>imgs(s)?imgs(s).length:3;
+
+function mock(s,i){
+  const p=s.palette,box=`background:${p.bg};color:${p.text}`;
+  if(i===1){
+    const rows=["Now Playing","Music","Playlists","Radio","Search","Settings"];
+    return `<div class="mock" style="${box}" aria-hidden="true"><div class="b" style="color:${p.muted}"><span>Reborn</span><span style="color:${p.dim}">87%</span></div><div style="margin-top:5%">${rows.map((r,k)=>`<div class="li" style="${k===1?`background:${p.accent};color:${p.bg}`:`color:${p.text}`}">${r}</div>`).join("")}</div></div>`;
+  }
+  if(i===2){
+    const g=[[p.accent,p.dim],[p.muted,p.dim],[p.dim,p.accent],[p.accent,p.muted],[p.muted,p.accent],[p.dim,p.muted]];
+    return `<div class="mock" style="${box}" aria-hidden="true"><div class="b" style="color:${p.muted}"><span>Albums</span><span style="color:${p.dim}">6</span></div><div class="ag">${g.map(c=>`<div style="background:linear-gradient(135deg,${c[0]},${c[1]})"></div>`).join("")}</div><div class="t" style="margin-top:5%">Golden Hour</div><div class="a" style="color:${p.muted}">Sample Artist</div></div>`;
+  }
+  return `<div class="mock" style="${box}" aria-hidden="true"><div class="b" style="color:${p.muted}"><span>Now Playing</span><span style="color:${p.dim}">2/9</span></div><div class="c" style="background:linear-gradient(135deg,${p.accent},${p.dim})"></div><div class="t">Golden Hour</div><div class="a" style="color:${p.muted}">Sample Artist</div><div class="p" style="background:${p.dim}55"><i style="background:${p.accent}"></i></div></div>`;
+}
+// pos is keyed per place: the grid uses the skin id, the popup uses "d:"+id, so they move independently
+const slide=(s,k)=>{const i=pos[k]||0,a=imgs(s);return a?`<img src="${esc(a[i])}" alt="${esc(s.name)} preview ${i+1}" loading="lazy">`:mock(s,i)};
+const dots=(s,k)=>Array.from({length:count(s)},(_,j)=>`<i class="${j===(pos[k]||0)?"on":""}"></i>`).join("");
+function view(s,k=s.id){
+  const multi=count(s)>1;
+  return `<div class="view" data-view="${esc(k)}"><div class="slide">${slide(s,k)}</div>${multi?`<button class="nav p" data-nav="-1" data-id="${esc(k)}" aria-label="Previous preview">‹</button><button class="nav n" data-nav="1" data-id="${esc(k)}" aria-label="Next preview">›</button><div class="dots">${dots(s,k)}</div>`:""}</div>`;
+}
+const tm={};
+function step(k,d){
+  const s=skins.find(x=>x.id===k.replace(/^d:/,""));if(!s)return;
+  const n=count(s);pos[k]=((pos[k]||0)+d+n)%n;
+  document.querySelectorAll(".view").forEach(v=>{if(v.dataset.view!==k)return;v.querySelector(".slide").innerHTML=slide(s,k);const e=v.querySelector(".dots");if(e)e.innerHTML=dots(s,k);v.classList.add("show")});
+  clearTimeout(tm[k]);tm[k]=setTimeout(()=>document.querySelectorAll(".view").forEach(v=>{if(v.dataset.view===k)v.classList.remove("show")}),1500);
+}
+function render(){
+  const q=$("#q").value.trim().toLowerCase(),so=$("#sort").value;
+  FILTERS.forEach((f,i)=>{$("#chips").children[i].querySelector("em").textContent=skins.filter(s=>f==="All"||tagsOf(s).includes(f)).length});
+  const list=skins.filter(s=>(filter==="All"||tagsOf(s).includes(filter))&&(!q||(s.name+" "+(s.author||"")+" "+(s.description||"")).toLowerCase().includes(q)))
+    .sort((a,b)=>so==="author"?(a.author||"").localeCompare(b.author||""):so==="za"?b.name.localeCompare(a.name):a.name.localeCompare(b.name));
+  $("#count").textContent=list.length+(list.length===1?" skin":" skins");
+  $("#grid").innerHTML=list.map(s=>`<article class="tile">${view(s)}
+   <div class="info"><button class="name" data-open="${esc(s.id)}"><b>${esc(s.name)}</b>${s.author?`<span class="by">by ${esc(s.author)}</span>`:""}</button></div></article>`).join("");
+  $("#empty").textContent=failed?"Couldn’t load skins. Please try again later.":"No skins match.";
+  $("#empty").hidden=list.length>0;
+}
+const skinJson=s=>JSON.stringify({format:1,name:s.name,palette:s.palette},null,2);
+function save(blob,name){const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
+async function download(s,btn){
+  const label=btn&&btn.textContent;
+  try{
+    if(btn){btn.textContent="Preparing…";btn.disabled=true}
+    const name=s.folder||s.name,root=new JSZip().folder(name);
+    if(s.files)await Promise.all(s.files.map(async f=>{
+      const r=await fetch(raw(`skins/${s.folder}/${f}`));if(!r.ok)throw 0;
+      root.file(f,await r.arrayBuffer());
+    }));
+    else root.file("skin.json",skinJson(s));   // demo skins only
+    save(await root.generateAsync({type:"blob"}),name+".zip");
+    if(btn)btn.textContent=label;
+  }catch(e){if(btn)btn.textContent="Download failed, tap to retry"}
+  finally{if(btn)btn.disabled=false}
+}
+function open(s){
+  pos["d:"+s.id]=pos[s.id]||0;
+  $("#detail").innerHTML=`<div>${view(s,"d:"+s.id)}</div>
+   <h2>${esc(s.name)}${s.author?`<small>by ${esc(s.author)}</small>`:""}</h2>
+   <p>${esc(s.description||"")}</p>
+   <button class="btn" id="get">Download .zip</button>
+   <ol><li>Unzip it.</li><li>Copy the folder into <code>Skins</code> on the player.</li><li>Settings → Skin, then pick <b>${esc(s.name)}</b>.</li></ol>`;
+  $("#get").onclick=()=>download(s,$("#get"));
+  $("#dlg").dataset.id="d:"+s.id;$("#dlg").showModal();$("#dlg").focus();
+}
+document.addEventListener("click",e=>{
+  const n=e.target.closest("[data-nav]");if(n){step(n.dataset.id,+n.dataset.nav);return}
+  if(e.target.id==="dlg"){e.target.close();return}
+  const o=e.target.closest("[data-open]"),v=e.target.closest("#grid .view");
+  const id=o?o.dataset.open:v&&v.dataset.view;
+  if(id)open(skins.find(x=>x.id===id));
+});
+$("#dlg").addEventListener("keydown",e=>{if(e.key==="ArrowLeft")step($("#dlg").dataset.id,-1);if(e.key==="ArrowRight")step($("#dlg").dataset.id,1)});
+$("#q").oninput=render;$("#sort").onchange=render;
+$("#chips").innerHTML=FILTERS.map(f=>`<button aria-pressed="${f==="All"}">${f}<em></em></button>`).join("");
+$("#chips").onclick=e=>{const b=e.target.closest("button");if(!b)return;const k=[...$("#chips").children];filter=FILTERS[k.indexOf(b)];k.forEach(x=>x.setAttribute("aria-pressed",x===b));render()};
+// Skins are discovered in the database repo: skins/<Folder>/skin.json (plus any pictures and fonts),
+// and an optional gallery/<Folder>/ with screenshots. Name, author and description come from skin.json.
+// Everything read from the repo is untrusted: colours are validated and only https links are used.
+const HEX=/^#[0-9a-f]{6}$/i,DEF={bg:"#222222",text:"#eeeeee",muted:"#aaaaaa",dim:"#777777",accent:"#4488ff"};
+const enc=p=>p.split("/").map(encodeURIComponent).join("/");
+const raw=p=>BASE+enc(p);
+const getJson=async p=>{const r=await fetch(raw(p),{cache:"no-cache"});if(!r.ok)throw 0;return r.json()};
+const str=(v,n)=>typeof v==="string"?v.slice(0,n):"";
+async function discover(){
+  const r=await fetch(`https://api.github.com/repos/${DB}/git/trees/${BRANCH}?recursive=1`);
+  if(!r.ok)throw 0;
+  const paths=(await r.json()).tree.filter(f=>f.type==="blob").map(f=>f.path);
+  const folders=[...new Set(paths.filter(p=>/^skins\/[^/]+\/skin\.json$/.test(p)).map(p=>p.split("/")[1]))];
+  const out=await Promise.all(folders.map(async f=>{
+    try{
+      const j=await getJson(`skins/${f}/skin.json`),p=(j&&j.palette)||{};
+      const sp=`skins/${f}/`,gp=`gallery/${f}/`,g=paths.filter(x=>x.startsWith(gp));
+      return{id:f,folder:f,name:str(j.name,60)||f,author:str(j.author,60),description:str(j.description,300),
+        palette:Object.fromEntries(Object.keys(DEF).map(k=>[k,HEX.test(p[k])?p[k]:DEF[k]])),
+        files:paths.filter(x=>x.startsWith(sp)).map(x=>x.slice(sp.length)),
+        previews:g.filter(x=>/\.(png|jpe?g|webp|gif)$/i.test(x)&&x.indexOf("/",gp.length)<0).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true})).map(raw)};
+    }catch(e){return null}
+  }));
+  return out.filter(Boolean);
+}
+// GitHub allows 60 anonymous API calls an hour per visitor, so the list is kept for 10 minutes.
+const CK="skins-cache-1";
+async function loadSkins(){
+  let c=null;try{c=JSON.parse(localStorage.getItem(CK))}catch(e){}
+  if(c&&Date.now()-c.t<6e5)return c.data;
+  try{const d=await discover();try{localStorage.setItem(CK,JSON.stringify({t:Date.now(),data:d}))}catch(e){}return d}
+  catch(e){if(c)return c.data;throw e}
+}
+(async()=>{
+  if(DB.startsWith("YOUR-USERNAME"))skins=FALLBACK;   // demo mode until DB is set
+  else try{skins=await loadSkins()}catch(e){skins=[];failed=true}
+  render();
+})();
+</script>
+</body>
+</html>
