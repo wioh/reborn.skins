@@ -35,6 +35,7 @@ select{margin-left:auto}
 .tile:hover{box-shadow:0 10px 26px #0003;transform:translateY(-2px)}
 .view{position:relative;aspect-ratio:4/3;overflow:hidden;cursor:pointer;background:#000}
 .slide{width:100%;height:100%}
+.nopv{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:var(--line);color:var(--muted);font-size:.85rem}
 .slide img{width:100%;height:100%;object-fit:cover;display:block}
 .nav{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;border:0;background:#000a;color:#fff;font-size:1.1rem;line-height:1;cursor:pointer;display:grid;place-items:center;opacity:0;transition:opacity .15s}
 .view:hover .nav,.nav:focus-visible{opacity:1}
@@ -48,20 +49,10 @@ select{margin-left:auto}
 .info{padding:11px 14px 13px}
 .name{width:100%;border:0;background:none;padding:0;text-align:left;color:inherit;font:inherit;cursor:pointer;min-width:0}
 .name b{line-height:1.25}.name .by{color:var(--muted);font-size:.88rem;margin-left:6px}.name small{display:block;color:var(--muted);font-size:.78rem}
-.mock{height:100%;padding:6% 7%;display:flex;flex-direction:column;font-family:system-ui,sans-serif;container-type:inline-size}
-.mock .b{font-size:5.5cqw;display:flex;justify-content:space-between}
-.mock .c{flex:1;margin:5% auto;aspect-ratio:1;border-radius:6%;max-height:52%}
-.mock .t{font-size:7cqw;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mock .a{font-size:5.5cqw}
-.mock .p{height:3%;min-height:3px;border-radius:9px;margin-top:5%;position:relative}
-.mock .p i{position:absolute;inset:0 62% 0 0;border-radius:9px}
-.mock .li{font-size:6.2cqw;padding:2.2% 4%;border-radius:6px;margin-top:1.6%}
-.mock .ag{flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:5%;margin-top:6%;align-content:start}
-.mock .ag div{aspect-ratio:1;border-radius:6%}
 dialog{margin:auto;width:min(380px,92vw);max-height:90vh;border:1px solid var(--line);border-radius:16px;background:var(--panel);color:var(--ink);padding:16px;overflow:auto;box-shadow:0 20px 60px #0006}
 dialog:focus{outline:none}
 dialog::backdrop{background:#0006}
-dialog .view{border-radius:10px}
+dialog .view{border-radius:10px;cursor:default}
 dialog h2{margin:14px 0 0;font-size:1.3rem;letter-spacing:-.02em;line-height:1.25}
 dialog h2 small{font-size:.85rem;font-weight:400;color:var(--muted);margin-left:6px}
 dialog p{margin:6px 0}
@@ -95,7 +86,7 @@ const FALLBACK=[
  {id:"mint",name:"Mint",author:"Sample",description:"Fresh green accents.",palette:{bg:"#0B1512",text:"#E9FFF6",muted:"#9CC9B8",dim:"#5E8478",accent:"#3DDC97"}}
 ];
 // The PUBLIC skins database repo (owner/name) and its branch. This is where skins.json, zips, previews and the submit form live.
-const DB="YOUR-USERNAME/reborn-skins-db",BRANCH="main";
+const DB="wioh/reborn.skins-db",BRANCH="main";
 const BASE=`https://raw.githubusercontent.com/${DB}/${BRANCH}/`;
 const $=s=>document.querySelector(s);
 $("#submit").href=`https://github.com/${DB}/issues/new?template=submit-skin.yml`;
@@ -105,22 +96,12 @@ let skins=[],filter="All",failed=false;const pos={};
 const FILTERS=["All","Dark","Light"];
 const tagsOf=s=>[lum(s.palette.bg)>.5?"Light":"Dark"];
 const imgs=s=>s.previews&&s.previews.length?s.previews:(s.preview?[s.preview]:null);
-const count=s=>imgs(s)?imgs(s).length:3;
+const count=s=>imgs(s)?imgs(s).length:1;
 
-function mock(s,i){
-  const p=s.palette,box=`background:${p.bg};color:${p.text}`;
-  if(i===1){
-    const rows=["Now Playing","Music","Playlists","Radio","Search","Settings"];
-    return `<div class="mock" style="${box}" aria-hidden="true"><div class="b" style="color:${p.muted}"><span>Reborn</span><span style="color:${p.dim}">87%</span></div><div style="margin-top:5%">${rows.map((r,k)=>`<div class="li" style="${k===1?`background:${p.accent};color:${p.bg}`:`color:${p.text}`}">${r}</div>`).join("")}</div></div>`;
-  }
-  if(i===2){
-    const g=[[p.accent,p.dim],[p.muted,p.dim],[p.dim,p.accent],[p.accent,p.muted],[p.muted,p.accent],[p.dim,p.muted]];
-    return `<div class="mock" style="${box}" aria-hidden="true"><div class="b" style="color:${p.muted}"><span>Albums</span><span style="color:${p.dim}">6</span></div><div class="ag">${g.map(c=>`<div style="background:linear-gradient(135deg,${c[0]},${c[1]})"></div>`).join("")}</div><div class="t" style="margin-top:5%">Golden Hour</div><div class="a" style="color:${p.muted}">Sample Artist</div></div>`;
-  }
-  return `<div class="mock" style="${box}" aria-hidden="true"><div class="b" style="color:${p.muted}"><span>Now Playing</span><span style="color:${p.dim}">2/9</span></div><div class="c" style="background:linear-gradient(135deg,${p.accent},${p.dim})"></div><div class="t">Golden Hour</div><div class="a" style="color:${p.muted}">Sample Artist</div><div class="p" style="background:${p.dim}55"><i style="background:${p.accent}"></i></div></div>`;
-}
+const PH=`<div class="nopv"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/><path d="M3 3l18 18"/></svg><span>No preview available</span></div>`;
+function broken(img){img.outerHTML=PH}
 // pos is keyed per place: the grid uses the skin id, the popup uses "d:"+id, so they move independently
-const slide=(s,k)=>{const i=pos[k]||0,a=imgs(s);return a?`<img src="${esc(a[i])}" alt="${esc(s.name)} preview ${i+1}" loading="lazy">`:mock(s,i)};
+const slide=(s,k)=>{const i=pos[k]||0,a=imgs(s);return a?`<img src="${esc(a[i])}" alt="${esc(s.name)} preview ${i+1}" loading="lazy" onerror="broken(this)">`:PH};
 const dots=(s,k)=>Array.from({length:count(s)},(_,j)=>`<i class="${j===(pos[k]||0)?"on":""}"></i>`).join("");
 function view(s,k=s.id){
   const multi=count(s)>1;
